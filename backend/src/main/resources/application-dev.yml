@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      # Conecta ao MongoDB provisionado pelo Docker Compose
+      uri: mongodb://admin:admin_password@localhost:27017/ironfit_db?authSource=admin
+
+# Configurações Customizadas do Projeto
+ironfit:
+  security:
+    jwt:
+      # Chave gerada em base64 (Apenas para DEV. Em PROD, virá por variável de ambiente secreta)
+      secret: ${JWT_SECRET:4b6150645367566b5970337336763979244226452948404d6351655468576d5a}
+      expiration: 86400000       # 1 dia em milissegundos
+      refresh-expiration: 604800000 # 7 dias em milissegundos
+
+logging:
+  level:
+    # Habilita visualização das queries do Mongo no console para facilitar debug
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    com.ironfit: DEBUG
