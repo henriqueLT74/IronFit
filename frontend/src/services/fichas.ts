@@ -15,15 +15,15 @@ export interface FichaDeTreino {
 }
 
 export async function getFichas(): Promise<FichaDeTreino[]> {
-  const response = await api.get<FichaDeTreino[]>('/api/fichas');
+  const response = await api.get<FichaDeTreino[]>('/fichas');
   return response.data;
 }
 
 export async function createFicha(ficha: FichaDeTreino): Promise<FichaDeTreino> {
-  const response = await api.post<FichaDeTreino>('/api/fichas', ficha);
+  const response = await api.post<FichaDeTreino>('/fichas', ficha);
   return response.data;
 }
 
 export async function deleteFicha(id: string): Promise<void> {
-  await api.delete(`/api/fichas/${id}`);
+  await api.delete(`/fichas/${id}`);
 }
